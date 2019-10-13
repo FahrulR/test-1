@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	f "fmt"
+	"os"
 	"sort"
 	"strings"
 )
@@ -11,7 +13,9 @@ var output string
 func main() {
 	var input string
 	f.Printf("Input any word: ")
-	f.Scanln(&input)
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	input = scanner.Text()
 	splitChar(input)
 	f.Printf("Output: %s\n", output)
 }
@@ -21,6 +25,7 @@ func splitChar(input string) string {
 	var consonants []string
 	var prints []string
 	input = strings.ToLower(input)
+	input = strings.Replace(input, " ", "", -1)
 	word := strings.Split(input, "")
 	for _, ch := range word {
 		switch ch {
